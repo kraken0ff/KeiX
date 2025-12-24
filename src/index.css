@@ -7,30 +7,50 @@
   color-scheme: dark;
 }
 
+/* Красивое выделение текста */
+::selection {
+  background-color: #6366f1;
+  color: #ffffff;
+}
+
 body {
-  /* Глубокий премиум фон: смесь темно-фиолетового и черного */
-  background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #020617 100%);
+  background-color: #020617; 
   color: #e2e8f0;
   font-family: 'Space Grotesk', sans-serif;
-  overflow-x: hidden;
-  min-height: 100vh;
+  overflow: hidden; 
+  /* Улучшаем рендеринг */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Скроллбар */
+/* === ВАЖНАЯ ПРАВКА ДЛЯ КУКРСОРА === */
+/* Полностью выключаем системный курсор для ВСЕХ элементов */
+*, *::before, *::after, a, button, input, select {
+    cursor: none !important;
+}
+
+/* Fallback: только на тач-скринах возвращаем авто */
+@media (pointer: coarse) {
+    *, *::before, *::after, a, button, input {
+        cursor: auto !important;
+    }
+}
+
+.preserve-3d { transform-style: preserve-3d; }
+.perspective-container { perspective: 1200px; }
+
+/* Аппаратное ускорение для плавности */
+.will-change-transform { will-change: transform; }
+
+.glass-panel {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: #6366f1; }
-
-/* Утилитный класс для эффекта "Стекла" */
-.glass-panel {
-    background: rgba(30, 41, 59, 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
-
-.text-glow {
-    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
-}
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }

@@ -1,0 +1,702 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.gitattributes
+.gitignore
+eslint.config.js
+index.html
+package.json
+postcss.config.js
+public/vite.svg
+README.md
+src/App.css
+src/App.jsx
+src/assets/react.svg
+src/index.css
+src/main.jsx
+tailwind.config.js
+vite.config.js
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path=".gitattributes">
+# Auto detect text files and perform LF normalization
+* text=auto
+</file>
+
+<file path=".gitignore">
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+</file>
+
+<file path="eslint.config.js">
+import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import { defineConfig, globalIgnores } from 'eslint/config'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{js,jsx}'],
+    extends: [
+      js.configs.recommended,
+      reactHooks.configs.flat.recommended,
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        ecmaVersion: 'latest',
+        ecmaFeatures: { jsx: true },
+        sourceType: 'module',
+      },
+    },
+    rules: {
+      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
+    },
+  },
+])
+</file>
+
+<file path="index.html">
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keyboard Pro Test</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
+</file>
+
+<file path="package.json">
+{
+  "name": "keyboard-test",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "canvas-confetti": "^1.9.4",
+    "framer-motion": "^12.23.26",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/react": "^19.2.5",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.1",
+    "autoprefixer": "^10.4.23",
+    "eslint": "^9.39.1",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "vite": "npm:rolldown-vite@7.2.5"
+  },
+  "overrides": {
+    "vite": "npm:rolldown-vite@7.2.5"
+  }
+}
+</file>
+
+<file path="postcss.config.js">
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+</file>
+
+<file path="public/vite.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="31.88" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 257"><defs><linearGradient id="IconifyId1813088fe1fbc01fb466" x1="-.828%" x2="57.636%" y1="7.652%" y2="78.411%"><stop offset="0%" stop-color="#41D1FF"></stop><stop offset="100%" stop-color="#BD34FE"></stop></linearGradient><linearGradient id="IconifyId1813088fe1fbc01fb467" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%"><stop offset="0%" stop-color="#FFEA83"></stop><stop offset="8.333%" stop-color="#FFDD35"></stop><stop offset="100%" stop-color="#FFA800"></stop></linearGradient></defs><path fill="url(#IconifyId1813088fe1fbc01fb466)" d="M255.153 37.938L134.897 252.976c-2.483 4.44-8.862 4.466-11.382.048L.875 37.958c-2.746-4.814 1.371-10.646 6.827-9.67l120.385 21.517a6.537 6.537 0 0 0 2.322-.004l117.867-21.483c5.438-.991 9.574 4.796 6.877 9.62Z"></path><path fill="url(#IconifyId1813088fe1fbc01fb467)" d="M185.432.063L96.44 17.501a3.268 3.268 0 0 0-2.634 3.014l-5.474 92.456a3.268 3.268 0 0 0 3.997 3.378l24.777-5.718c2.318-.535 4.413 1.507 3.936 3.838l-7.361 36.047c-.495 2.426 1.782 4.5 4.151 3.78l15.304-4.649c2.372-.72 4.652 1.36 4.15 3.788l-11.698 56.621c-.732 3.542 3.979 5.473 5.943 2.437l1.313-2.028l72.516-144.72c1.215-2.423-.88-5.186-3.54-4.672l-25.505 4.922c-2.396.462-4.435-1.77-3.759-4.114l16.646-57.705c.677-2.35-1.37-4.583-3.769-4.113Z"></path></svg>
+</file>
+
+<file path="README.md">
+
+</file>
+
+<file path="src/App.css">
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+</file>
+
+<file path="src/App.jsx">
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import confetti from 'canvas-confetti';
+
+// === КОНФИГ КЛАВИАТУРЫ ===
+
+// Основной блок оставим массивами, так удобнее для рядов
+const SECTION_MAIN = [
+  ['Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12'],
+  ['Backquote', 'Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5', 'Digit6', 'Digit7', 'Digit8', 'Digit9', 'Digit0', 'Minus', 'Equal', 'Backspace'],
+  ['Tab', 'KeyQ', 'KeyW', 'KeyE', 'KeyR', 'KeyT', 'KeyY', 'KeyU', 'KeyI', 'KeyO', 'KeyP', 'BracketLeft', 'BracketRight', 'Backslash'],
+  ['CapsLock', 'KeyA', 'KeyS', 'KeyD', 'KeyF', 'KeyG', 'KeyH', 'KeyJ', 'KeyK', 'KeyL', 'Semicolon', 'Quote', 'Enter'],
+  ['ShiftLeft', 'KeyZ', 'KeyX', 'KeyC', 'KeyV', 'KeyB', 'KeyN', 'KeyM', 'Comma', 'Period', 'Slash', 'ShiftRight'],
+  ['ControlLeft', 'MetaLeft', 'AltLeft', 'Space', 'AltRight', 'MetaRight', 'ContextMenu', 'ControlRight']
+];
+
+const SECTION_NAV = [
+  ['PrintScreen', 'ScrollLock', 'Pause'],
+  ['Insert', 'Home', 'PageUp'],
+  ['Delete', 'End', 'PageDown']
+];
+
+const LABELS = {
+  Backquote: '~', Minus: '-', Equal: '=', BracketLeft: '[', BracketRight: ']', Backslash: '\\', Semicolon: ';', Quote: "'", Comma: ',', Period: '.', Slash: '/', Space: '', 
+  ControlLeft: 'Ctrl', MetaLeft: 'Win', AltLeft: 'Alt', ControlRight: 'Ctrl', MetaRight: 'Win', AltRight: 'Alt', ShiftLeft: 'Shift', ShiftRight: 'Shift', Backspace: 'Backspace', Enter: 'Enter', CapsLock: 'Caps', Tab: 'Tab', ContextMenu: 'Fn', Escape: 'ESC',
+  PrintScreen: 'PrtSc', ScrollLock: 'ScrLk', Pause: 'Pause', Insert: 'Ins', Home: 'Home', PageUp: 'PgUp', Delete: 'Del', End: 'End', PageDown: 'PgDn',
+  ArrowUp: '↑', ArrowLeft: '←', ArrowDown: '↓', ArrowRight: '→',
+  NumLock: 'Num', NumpadDivide: '/', NumpadMultiply: '*', NumpadSubtract: '-', NumpadAdd: '+', NumpadEnter: 'Ent', NumpadDecimal: '.',
+  Numpad0: '0', Numpad1: '1', Numpad2: '2', Numpad3: '3', Numpad4: '4', Numpad5: '5', Numpad6: '6', Numpad7: '7', Numpad8: '8', Numpad9: '9'
+};
+
+const WIDTHS = {
+  Backspace: 'w-[90px]', Tab: 'w-[70px]', CapsLock: 'w-[80px]', Enter: 'w-[100px]', ShiftLeft: 'w-[100px]', ShiftRight: 'w-[110px]', 
+  Space: 'flex-grow', 
+  ControlLeft: 'w-[60px]', MetaLeft: 'w-[50px]', AltLeft: 'w-[50px]', ControlRight: 'w-[60px]', AltRight: 'w-[50px]', MetaRight: 'w-[50px]'
+};
+
+// Тексты для тайпинга
+const TEXTS = [
+  "Элегантный код подобен музыке. Каждая строка должна иметь свой ритм и смысл.",
+  "Совершенство достигнуто не тогда, когда нечего добавить, а когда нечего убрать.",
+  "Качественные механические переключатели создают тактильную симфонию для пальцев.",
+  "В мире цифрового шума чистота дизайна и скорость реакции решают всё."
+];
+
+// === КОМПОНЕНТЫ ===
+
+// 1. Кнопка
+const Key = ({ code, active, tested, label, className = "" }) => {
+  // Если класс ширины передан снаружи (например из Grid), используем его, иначе ищем в WIDTHS или ставим дефолт
+  const baseWidth = className.includes('w-') || className.includes('flex-grow') ? '' : (WIDTHS[code] || 'w-[50px]');
+  
+  return (
+    <div className={`relative h-[50px] ${baseWidth} ${className} perspective-500`}>
+      <motion.div
+        layout
+        initial={false}
+        animate={{
+          y: active ? 4 : 0,
+          scale: active ? 0.95 : 1,
+          backgroundColor: active ? '#6366f1' : tested ? 'rgba(99, 102, 241, 0.15)' : 'rgba(15, 23, 42, 0.6)',
+          borderColor: active ? '#818cf8' : tested ? '#4f46e5' : 'rgba(255,255,255,0.1)',
+          boxShadow: active 
+            ? '0 0 25px rgba(99, 102, 241, 0.6), inset 0 0 10px rgba(255,255,255,0.3)' 
+            : tested 
+            ? '0 0 8px rgba(99, 102, 241, 0.2)' 
+            : '0 4px 0 rgba(0,0,0,0.4)'
+        }}
+        transition={{ duration: 0.1 }}
+        className={`
+          w-full h-full rounded-lg border border-white/5 
+          flex items-center justify-center 
+          text-[10px] sm:text-xs font-bold tracking-wider font-mono
+          text-slate-400 select-none relative z-10
+          backdrop-blur-sm cursor-pointer
+        `}
+      >
+        <span className={`transition-colors duration-200 ${active ? 'text-white' : tested ? 'text-indigo-300' : ''}`}>
+          {label}
+        </span>
+        <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-white/10 to-transparent rounded-t-lg pointer-events-none" />
+      </motion.div>
+      
+      {!active && (
+        <div className="absolute inset-x-0 -bottom-1 h-full rounded-lg bg-slate-900 -z-10 translate-y-1" />
+      )}
+    </div>
+  );
+};
+
+// 2. Тестер Клавиш
+const TesterMode = () => {
+  const [activeKeys, setActiveKeys] = useState([]);
+  const [history, setHistory] = useState(new Set());
+  const [lastKey, setLastKey] = useState(null);
+
+  useEffect(() => {
+    const handleDown = (e) => {
+      e.preventDefault();
+      setActiveKeys(prev => {
+        if (prev.includes(e.code)) return prev;
+        return [...prev, e.code];
+      });
+      setHistory(prev => new Set(prev).add(e.code));
+      setLastKey(e.code);
+    };
+
+    const handleUp = (e) => setActiveKeys(prev => prev.filter(k => k !== e.code));
+
+    window.addEventListener('keydown', handleDown);
+    window.addEventListener('keyup', handleUp);
+    return () => {
+      window.removeEventListener('keydown', handleDown);
+      window.removeEventListener('keyup', handleUp);
+    };
+  }, []);
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.4 }}
+      className="w-full flex flex-col items-center"
+    >
+      <div className="w-full overflow-x-auto pb-8 flex justify-center px-4">
+        {/* Общий контейнер клавиатуры */}
+        <div className="glass-panel p-6 rounded-[20px] flex gap-6 shadow-2xl relative min-w-max items-start">
+          
+          {/* 1. ОСНОВНАЯ КЛАВИАТУРА */}
+          <div className="flex flex-col gap-[6px]">
+            {SECTION_MAIN.map((row, i) => (
+              <div key={i} className="flex gap-[6px]">
+                {row.map(code => (
+                  <Key key={code} code={code} label={LABELS[code] || code.replace('Key', '').replace('Digit', '')} active={activeKeys.includes(code)} tested={history.has(code)} />
+                ))}
+              </div>
+            ))}
+          </div>
+
+          {/* 2. БЛОК НАВИГАЦИИ */}
+          <div className="flex flex-col justify-between h-full">
+            <div className="flex flex-col gap-[6px]">
+              {SECTION_NAV.map((row, i) => (
+                <div key={i} className="flex gap-[6px]">
+                  {row.map(code => (
+                     <Key key={code} code={code} label={LABELS[code]} active={activeKeys.includes(code)} tested={history.has(code)} />
+                  ))}
+                </div>
+              ))}
+            </div>
+            
+            {/* Стрелки */}
+            <div className="flex flex-col items-center gap-[6px] mt-auto pb-[2px]">
+               <Key code="ArrowUp" label="↑" active={activeKeys.includes('ArrowUp')} tested={history.has('ArrowUp')} />
+               <div className="flex gap-[6px]">
+                  <Key code="ArrowLeft" label="←" active={activeKeys.includes('ArrowLeft')} tested={history.has('ArrowLeft')} />
+                  <Key code="ArrowDown" label="↓" active={activeKeys.includes('ArrowDown')} tested={history.has('ArrowDown')} />
+                  <Key code="ArrowRight" label="→" active={activeKeys.includes('ArrowRight')} tested={history.has('ArrowRight')} />
+               </div>
+            </div>
+          </div>
+
+          {/* 3. NUMPAD (ТЕПЕРЬ НА CSS GRID) */}
+          <div className="grid grid-cols-4 gap-[6px] w-[220px]">
+             {/* Ряд 1 */}
+             <Key code="NumLock" label="Num" active={activeKeys.includes("NumLock")} tested={history.has("NumLock")} className="w-full" />
+             <Key code="NumpadDivide" label="/" active={activeKeys.includes("NumpadDivide")} tested={history.has("NumpadDivide")} className="w-full" />
+             <Key code="NumpadMultiply" label="*" active={activeKeys.includes("NumpadMultiply")} tested={history.has("NumpadMultiply")} className="w-full" />
+             <Key code="NumpadSubtract" label="-" active={activeKeys.includes("NumpadSubtract")} tested={history.has("NumpadSubtract")} className="w-full" />
+             
+             {/* Ряд 2 */}
+             <Key code="Numpad7" label="7" active={activeKeys.includes("Numpad7")} tested={history.has("Numpad7")} className="w-full" />
+             <Key code="Numpad8" label="8" active={activeKeys.includes("Numpad8")} tested={history.has("Numpad8")} className="w-full" />
+             <Key code="Numpad9" label="9" active={activeKeys.includes("Numpad9")} tested={history.has("Numpad9")} className="w-full" />
+             <Key code="NumpadAdd" label="+" active={activeKeys.includes("NumpadAdd")} tested={history.has("NumpadAdd")} className="w-full h-full row-span-2" />
+
+             {/* Ряд 3 */}
+             <Key code="Numpad4" label="4" active={activeKeys.includes("Numpad4")} tested={history.has("Numpad4")} className="w-full" />
+             <Key code="Numpad5" label="5" active={activeKeys.includes("Numpad5")} tested={history.has("Numpad5")} className="w-full" />
+             <Key code="Numpad6" label="6" active={activeKeys.includes("Numpad6")} tested={history.has("Numpad6")} className="w-full" />
+             
+             {/* Ряд 4 */}
+             <Key code="Numpad1" label="1" active={activeKeys.includes("Numpad1")} tested={history.has("Numpad1")} className="w-full" />
+             <Key code="Numpad2" label="2" active={activeKeys.includes("Numpad2")} tested={history.has("Numpad2")} className="w-full" />
+             <Key code="Numpad3" label="3" active={activeKeys.includes("Numpad3")} tested={history.has("Numpad3")} className="w-full" />
+             <Key code="NumpadEnter" label="Ent" active={activeKeys.includes("NumpadEnter")} tested={history.has("NumpadEnter")} className="w-full h-full row-span-2" />
+
+             {/* Ряд 5 */}
+             <Key code="Numpad0" label="0" active={activeKeys.includes("Numpad0")} tested={history.has("Numpad0")} className="w-full col-span-2" />
+             <Key code="NumpadDecimal" label="." active={activeKeys.includes("NumpadDecimal")} tested={history.has("NumpadDecimal")} className="w-full" />
+          </div>
+
+        </div>
+      </div>
+
+      {/* Статистика */}
+      <div className="mt-8 flex items-center gap-8 px-8 py-4 glass-panel rounded-full text-sm sm:text-base">
+        <div className="flex flex-col items-center">
+          <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Нажато</span>
+          <span className="text-indigo-400 font-mono text-xl">{history.size}</span>
+        </div>
+        <div className="h-8 w-[1px] bg-white/10"></div>
+        <div className="flex flex-col items-center min-w-[100px]">
+          <span className="text-slate-400 text-xs font-bold uppercase tracking-wider">Code</span>
+          <motion.span 
+            key={lastKey}
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
+            className="text-white font-bold font-mono text-xl text-glow"
+          >
+            {lastKey || "..."}
+          </motion.span>
+        </div>
+        <div className="h-8 w-[1px] bg-white/10"></div>
+        <button 
+          onClick={() => { setHistory(new Set()); setLastKey(null); }}
+          className="text-red-400 hover:text-red-300 transition-colors font-medium text-xs sm:text-sm uppercase tracking-wider"
+        >
+          Reset
+        </button>
+      </div>
+    </motion.div>
+  );
+};
+
+// 3. Режим Тайпинга
+const TypingMode = () => {
+  const [text, setText] = useState("");
+  const [input, setInput] = useState("");
+  const [started, setStarted] = useState(false);
+  const [finished, setFinished] = useState(false);
+  const [startTime, setStartTime] = useState(null);
+  const [stats, setStats] = useState({ wpm: 0 });
+  const inputRef = useRef(null);
+
+  const restart = () => {
+    setText(TEXTS[Math.floor(Math.random() * TEXTS.length)]);
+    setInput("");
+    setStarted(false);
+    setFinished(false);
+    setStats({ wpm: 0 });
+    setStartTime(null);
+    setTimeout(() => inputRef.current?.focus(), 100);
+  };
+
+  useEffect(() => restart(), []);
+
+  const handleChange = (e) => {
+    if(finished) return;
+    const val = e.target.value;
+    if(!started) { setStarted(true); setStartTime(Date.now()); }
+    setInput(val);
+
+    if(val === text) {
+      setFinished(true);
+      const dur = (Date.now() - startTime) / 60000;
+      const wpm = Math.round((text.length / 5) / dur);
+      setStats({ wpm });
+      confetti({
+        particleCount: 200, spread: 100, origin: { y: 0.6 },
+        colors: ['#6366f1', '#a855f7', '#ec4899']
+      });
+    }
+  };
+
+  const liveWpm = started && !finished && startTime 
+    ? Math.round((input.length/5) / ((Date.now() - startTime)/60000)) || 0 
+    : stats.wpm;
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      className="w-full max-w-4xl mx-auto flex flex-col items-center"
+    >
+      <div className="glass-panel p-12 rounded-[40px] w-full text-center relative overflow-hidden">
+        <div className="flex justify-between items-end mb-10 px-4">
+          <div className="text-left">
+            <div className="text-xs font-bold text-indigo-400 uppercase tracking-[0.2em] mb-1">Speed</div>
+            <div className="text-5xl font-mono text-white text-glow transition-all">{liveWpm}</div>
+          </div>
+          {!finished ? (
+            <div className="animate-pulse text-xs text-slate-500 font-mono">печатай...</div>
+          ) : (
+            <div className="text-green-400 text-sm font-bold bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">Complete</div>
+          )}
+        </div>
+
+        <div className="relative text-2xl sm:text-3xl font-light leading-relaxed font-mono text-left tracking-wide min-h-[120px]" onClick={() => inputRef.current.focus()}>
+          <input ref={inputRef} type="text" value={input} onChange={handleChange} className="opacity-0 absolute inset-0 -z-10 cursor-default"/>
+          
+          {text.split('').map((char, i) => {
+            let statusClass = "text-slate-600";
+            if (i < input.length) {
+              statusClass = input[i] === char ? "text-slate-200" : "text-red-500 decoration-red-500/50 underline decoration-2";
+            }
+            if (i === input.length && !finished) return <span key={i} className="bg-indigo-500 text-black shadow-[0_0_15px_#6366f1] rounded-sm px-[2px]">{char}</span>;
+            return <span key={i} className={`${statusClass} transition-colors duration-150`}>{char}</span>
+          })}
+        </div>
+
+        {finished && (
+          <motion.button
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            onClick={restart}
+            className="mt-12 px-10 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-2xl text-white font-bold shadow-xl hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 ring-1 ring-white/20"
+          >
+            Try Again ↻
+          </motion.button>
+        )}
+      </div>
+    </motion.div>
+  );
+};
+
+// === MAIN APP ===
+export default function App() {
+  const [tab, setTab] = useState('tester'); 
+
+  return (
+    <div className="min-h-screen w-full flex flex-col p-4 sm:p-8 overflow-hidden relative selection:bg-indigo-500 selection:text-white">
+      {/* Фон-сетка */}
+      <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none"></div>
+
+      <header className="flex justify-between items-center max-w-[1400px] mx-auto w-full mb-12 relative z-20">
+        <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-indigo-400 font-sans tracking-tight">
+          Kei<span className="font-light italic text-indigo-400">X</span>
+        </h1>
+        
+        {/* Анимированные Вкладки */}
+        <div className="glass-panel p-1 rounded-2xl flex gap-1 relative">
+          {['tester', 'typing'].map((mode) => (
+            <button
+              key={mode}
+              onClick={() => setTab(mode)}
+              className={`relative z-10 px-6 py-2 rounded-xl text-sm font-medium transition-colors duration-200 ${tab === mode ? 'text-white' : 'text-slate-400 hover:text-slate-200'}`}
+            >
+              {tab === mode && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 bg-indigo-600 shadow-[0_0_15px_rgba(99,102,241,0.5)] rounded-xl -z-10"
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                />
+              )}
+              {mode === 'tester' ? 'Switch Tester' : 'Speed Type'}
+            </button>
+          ))}
+        </div>
+      </header>
+
+      <main className="flex-grow flex flex-col items-center justify-start relative z-10 w-full">
+        <AnimatePresence mode="wait">
+          {tab === 'tester' ? (
+            <TesterMode key="tester" />
+          ) : (
+            <TypingMode key="typing" />
+          )}
+        </AnimatePresence>
+      </main>
+
+      {/* Футер */}
+      <footer className="text-center text-slate-600 text-xs py-4 font-mono mt-auto">
+      With love
+      </footer>
+    </div>
+  );
+}
+</file>
+
+<file path="src/assets/react.svg">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--logos" width="35.93" height="32" preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 228"><path fill="#00D8FF" d="M210.483 73.824a171.49 171.49 0 0 0-8.24-2.597c.465-1.9.893-3.777 1.273-5.621c6.238-30.281 2.16-54.676-11.769-62.708c-13.355-7.7-35.196.329-57.254 19.526a171.23 171.23 0 0 0-6.375 5.848a155.866 155.866 0 0 0-4.241-3.917C100.759 3.829 77.587-4.822 63.673 3.233C50.33 10.957 46.379 33.89 51.995 62.588a170.974 170.974 0 0 0 1.892 8.48c-3.28.932-6.445 1.924-9.474 2.98C17.309 83.498 0 98.307 0 113.668c0 15.865 18.582 31.778 46.812 41.427a145.52 145.52 0 0 0 6.921 2.165a167.467 167.467 0 0 0-2.01 9.138c-5.354 28.2-1.173 50.591 12.134 58.266c13.744 7.926 36.812-.22 59.273-19.855a145.567 145.567 0 0 0 5.342-4.923a168.064 168.064 0 0 0 6.92 6.314c21.758 18.722 43.246 26.282 56.54 18.586c13.731-7.949 18.194-32.003 12.4-61.268a145.016 145.016 0 0 0-1.535-6.842c1.62-.48 3.21-.974 4.76-1.488c29.348-9.723 48.443-25.443 48.443-41.52c0-15.417-17.868-30.326-45.517-39.844Zm-6.365 70.984c-1.4.463-2.836.91-4.3 1.345c-3.24-10.257-7.612-21.163-12.963-32.432c5.106-11 9.31-21.767 12.459-31.957c2.619.758 5.16 1.557 7.61 2.4c23.69 8.156 38.14 20.213 38.14 29.504c0 9.896-15.606 22.743-40.946 31.14Zm-10.514 20.834c2.562 12.94 2.927 24.64 1.23 33.787c-1.524 8.219-4.59 13.698-8.382 15.893c-8.067 4.67-25.32-1.4-43.927-17.412a156.726 156.726 0 0 1-6.437-5.87c7.214-7.889 14.423-17.06 21.459-27.246c12.376-1.098 24.068-2.894 34.671-5.345a134.17 134.17 0 0 1 1.386 6.193ZM87.276 214.515c-7.882 2.783-14.16 2.863-17.955.675c-8.075-4.657-11.432-22.636-6.853-46.752a156.923 156.923 0 0 1 1.869-8.499c10.486 2.32 22.093 3.988 34.498 4.994c7.084 9.967 14.501 19.128 21.976 27.15a134.668 134.668 0 0 1-4.877 4.492c-9.933 8.682-19.886 14.842-28.658 17.94ZM50.35 144.747c-12.483-4.267-22.792-9.812-29.858-15.863c-6.35-5.437-9.555-10.836-9.555-15.216c0-9.322 13.897-21.212 37.076-29.293c2.813-.98 5.757-1.905 8.812-2.773c3.204 10.42 7.406 21.315 12.477 32.332c-5.137 11.18-9.399 22.249-12.634 32.792a134.718 134.718 0 0 1-6.318-1.979Zm12.378-84.26c-4.811-24.587-1.616-43.134 6.425-47.789c8.564-4.958 27.502 2.111 47.463 19.835a144.318 144.318 0 0 1 3.841 3.545c-7.438 7.987-14.787 17.08-21.808 26.988c-12.04 1.116-23.565 2.908-34.161 5.309a160.342 160.342 0 0 1-1.76-7.887Zm110.427 27.268a347.8 347.8 0 0 0-7.785-12.803c8.168 1.033 15.994 2.404 23.343 4.08c-2.206 7.072-4.956 14.465-8.193 22.045a381.151 381.151 0 0 0-7.365-13.322Zm-45.032-43.861c5.044 5.465 10.096 11.566 15.065 18.186a322.04 322.04 0 0 0-30.257-.006c4.974-6.559 10.069-12.652 15.192-18.18ZM82.802 87.83a323.167 323.167 0 0 0-7.227 13.238c-3.184-7.553-5.909-14.98-8.134-22.152c7.304-1.634 15.093-2.97 23.209-3.984a321.524 321.524 0 0 0-7.848 12.897Zm8.081 65.352c-8.385-.936-16.291-2.203-23.593-3.793c2.26-7.3 5.045-14.885 8.298-22.6a321.187 321.187 0 0 0 7.257 13.246c2.594 4.48 5.28 8.868 8.038 13.147Zm37.542 31.03c-5.184-5.592-10.354-11.779-15.403-18.433c4.902.192 9.899.29 14.978.29c5.218 0 10.376-.117 15.453-.343c-4.985 6.774-10.018 12.97-15.028 18.486Zm52.198-57.817c3.422 7.8 6.306 15.345 8.596 22.52c-7.422 1.694-15.436 3.058-23.88 4.071a382.417 382.417 0 0 0 7.859-13.026a347.403 347.403 0 0 0 7.425-13.565Zm-16.898 8.101a358.557 358.557 0 0 1-12.281 19.815a329.4 329.4 0 0 1-23.444.823c-7.967 0-15.716-.248-23.178-.732a310.202 310.202 0 0 1-12.513-19.846h.001a307.41 307.41 0 0 1-10.923-20.627a310.278 310.278 0 0 1 10.89-20.637l-.001.001a307.318 307.318 0 0 1 12.413-19.761c7.613-.576 15.42-.876 23.31-.876H128c7.926 0 15.743.303 23.354.883a329.357 329.357 0 0 1 12.335 19.695a358.489 358.489 0 0 1 11.036 20.54a329.472 329.472 0 0 1-11 20.722Zm22.56-122.124c8.572 4.944 11.906 24.881 6.52 51.026c-.344 1.668-.73 3.367-1.15 5.09c-10.622-2.452-22.155-4.275-34.23-5.408c-7.034-10.017-14.323-19.124-21.64-27.008a160.789 160.789 0 0 1 5.888-5.4c18.9-16.447 36.564-22.941 44.612-18.3ZM128 90.808c12.625 0 22.86 10.235 22.86 22.86s-10.235 22.86-22.86 22.86s-22.86-10.235-22.86-22.86s10.235-22.86 22.86-22.86Z"></path></svg>
+</file>
+
+<file path="src/index.css">
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=JetBrains+Mono:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  /* Глубокий премиум фон: смесь темно-фиолетового и черного */
+  background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, #020617 100%);
+  color: #e2e8f0;
+  font-family: 'Space Grotesk', sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Скроллбар */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #6366f1; }
+
+/* Утилитный класс для эффекта "Стекла" */
+.glass-panel {
+    background: rgba(30, 41, 59, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.text-glow {
+    text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+</file>
+
+<file path="src/main.jsx">
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css' // Важно, чтобы тут был этот импорт!
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)
+</file>
+
+<file path="tailwind.config.js">
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        mono: ['"JetBrains Mono"', 'monospace'],
+      },
+      colors: {
+        neon: '#00ff9d',
+      }
+    },
+  },
+  plugins: [],
+}
+</file>
+
+<file path="vite.config.js">
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+})
+</file>
+
+</files>
