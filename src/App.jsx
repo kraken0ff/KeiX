@@ -36,22 +36,8 @@ const TEXTS = [
   "В мире цифрового шума чистота дизайна и скорость реакции решают всё."
 ];
 
-// === GPU KICKER (Force High Performance Mode) ===
-// Эта хрень крутится бесконечно вне экрана, не давая видеокарте сбросить частоты
-const GpuKeeper = () => (
-    <div 
-        style={{
-            position: 'absolute', opacity: 0, pointerEvents: 'none', width: 1, height: 1,
-            animation: 'spin 1s linear infinite' // Вращение заставляет браузер держать 60/144/240fps
-        }}
-    >
-        <style>{`@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }`}</style>
-    </div>
-);
-
-// === KEY ===
-const propsAreEqual = (prev, next) => prev.active === next.active && prev.tested === next.tested;
-
+// === KEY 3D (STABLE & BEAUTIFUL) ===
+// Простой memo без кастомных компараторов - React сам отлично справляется на 60fps
 const Key3D = memo(({ code, label, active, tested, className = "" }) => {
   let widthClass = 'w-[50px]'; 
   if (className.includes('w-') || className.includes('flex-grow')) widthClass = ''; 
@@ -64,62 +50,62 @@ const Key3D = memo(({ code, label, active, tested, className = "" }) => {
   else if (['MetaLeft', 'MetaRight', 'AltLeft', 'AltRight'].includes(code)) widthClass = 'w-[55px]';
   else if (code === 'Space') widthClass = 'flex-grow';
 
-  // Пружина чуть жестче (snappy)
-  const transitionConfig = {
-      transform: { type: "spring", stiffness: 1000, damping: 30, mass: 0.8 },
-      backgroundColor: { duration: 0.05 },
-      boxShadow: { duration: 0.05 },
-      borderColor: { duration: 0.1 },
-      borderBottomWidth: { duration: 0.05 }
-  };
-
   return (
     <div className={`relative h-[50px] ${widthClass} ${className}`} style={{ transformStyle: 'preserve-3d' }}>
       <motion.div
         initial={false}
         animate={{
+            // Плавный ход 4px (с 6 до 2)
             transform: active ? "translateZ(2px)" : "translateZ(6px)",
+            // Возвращаем сочные цвета
             backgroundColor: active ? '#6366f1' : tested ? 'rgba(99, 102, 241, 0.15)' : 'rgba(30, 41, 59, 0.65)',
             borderColor: active ? '#a5b4fc' : tested ? '#6366f1' : 'rgba(255,255,255,0.08)',
-            borderBottomWidth: active ? '0px' : '4px',
-            borderBottomColor: 'rgba(0,0,0,0.4)',
-            // Box-shadow только самый необходимый, без Blur ада
-            boxShadow: active ? '0 0 30px rgba(99, 102, 241, 0.6)' : 'none',
+            // Возвращаем красивую тень при нажатии (glow)
+            boxShadow: active 
+                ? '0 0 20px rgba(99, 102, 241, 0.6), inset 0 0 8px rgba(255,255,255,0.3)' 
+                : '0 4px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
         }}
-        transition={transitionConfig}
-        // Force GPU without "will-change: transform" which causes blur
-        style={{ backfaceVisibility: 'hidden' }} 
-        className="w-full h-full rounded-md border-t border-l border-r flex items-center justify-center relative select-none box-border"
+        // Единая плавная пружина для всего.
+        // Stiffness 400 - это "золотая середина" между скоростью и мягкостью (Apple-style)
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        className="w-full h-full rounded-md border flex items-center justify-center relative select-none"
       >
-        <span className={`font-mono font-bold text-[10px] sm:text-xs uppercase tracking-wider ${active ? 'text-white' : tested ? 'text-indigo-300' : 'text-slate-400'}`}
-              style={{ transform: active ? 'translateY(0px)' : 'translateY(-2px)' }} >
+        {/* Боковинка кнопки (симуляция 3D через псевдо-бордер внизу) */}
+        {!active && (
+             <div className="absolute inset-x-0 -bottom-[4px] h-[4px] bg-[#0f172a]/80 rounded-b-md" />
+        )}
+
+        <span className={`font-mono font-bold text-[10px] sm:text-xs uppercase tracking-wider z-10 ${active ? 'text-white' : tested ? 'text-indigo-300' : 'text-slate-400'}`}>
             {label || code.replace('Key', '').replace('Digit', '')}
         </span>
+        
+        {/* Красивый блик возвращен */}
         <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-white/10 to-transparent rounded-t-md pointer-events-none" />
       </motion.div>
     </div>
   );
-}, propsAreEqual);
+});
 
 // === KEYBOARD WRAPPER ===
 const Keyboard3DWrapper = ({ children }) => {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
 
-    const smoothX = useSpring(x, { stiffness: 45, damping: 25 });
-    const smoothY = useSpring(y, { stiffness: 45, damping: 25 });
+    const smoothX = useSpring(x, { stiffness: 40, damping: 20 });
+    const smoothY = useSpring(y, { stiffness: 40, damping: 20 });
 
-    const rotateX = useTransform(smoothY, [-0.5, 0.5], ["8deg", "-8deg"]);
-    const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-8deg", "8deg"]);
+    const rotateX = useTransform(smoothY, [-0.5, 0.5], ["7deg", "-7deg"]);
+    const rotateY = useTransform(smoothX, [-0.5, 0.5], ["-7deg", "7deg"]);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
+            // Обычная обработка без фанатизма, 60 раз в секунду
             const w = window.innerWidth;
             const h = window.innerHeight;
             x.set((e.clientX / w) - 0.5);
             y.set((e.clientY / h) - 0.5);
         };
-        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        window.addEventListener('mousemove', handleMouseMove);
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, [x, y]);
 
@@ -129,19 +115,22 @@ const Keyboard3DWrapper = ({ children }) => {
                 style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
                 className="relative"
             >
-                {/* Корпус: Облегчил тени (Shadow Radius уменьшен, убрана размытая большая тень) */}
+                {/* Корпус клавиатуры */}
                 <div className="absolute inset-0 bg-[#0f172a] rounded-[28px]"
-                    style={{ transform: "translateZ(-20px) translateY(12px) translateX(6px)", boxShadow: '10px 10px 30px rgba(0,0,0,0.6)' }}
+                    style={{ 
+                        transform: "translateZ(-20px) translateY(10px) translateX(5px)", 
+                        // Хорошая мягкая тень
+                        boxShadow: '0 30px 60px -10px rgba(0,0,0,0.8)' 
+                    }}
                 />
                 <div className="absolute inset-0 bg-[#1e293b] rounded-[28px]" style={{ transform: "translateZ(-8px)" }} />
                 
-                {/* Main Plate */}
+                {/* Plate */}
                 <div 
                     className="bg-[#111827] p-5 rounded-[24px] border-[2px] border-[#1e293b] relative"
-                    style={{ transformStyle: "preserve-3d", background: '#111827' }}
+                    style={{ transformStyle: "preserve-3d" }}
                 >
                     {children}
-                    
                     <div className="absolute top-4 left-6 flex items-center gap-2 pointer-events-none opacity-80" style={{ transform: "translateZ(1px)" }}>
                          <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 shadow-[0_0_8px_#6366f1]"></div>
                          <span className="text-[9px] text-slate-500 font-mono tracking-widest font-bold">Krakusha</span>
@@ -152,7 +141,6 @@ const Keyboard3DWrapper = ({ children }) => {
     );
 };
 
-// === TESTER MODE ===
 const TesterMode = () => {
   const [activeKeys, setActiveKeys] = useState([]);
   const [history, setHistory] = useState(new Set());
@@ -163,9 +151,6 @@ const TesterMode = () => {
       e.preventDefault();
       if(e.repeat) return;
       const c = e.code;
-      // Внимание: обновление стейта вызывает ререндер этого компонента,
-      // но благодаря memo на Key3D и отсутствию тяжелого useMemo-wrapper'а, 
-      // это происходит мгновенно.
       setActiveKeys(p => [...p, c]);
       setHistory(p => { const n = new Set(p); n.add(c); return n; });
       setLastKey(c);
@@ -182,9 +167,6 @@ const TesterMode = () => {
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      {/* Прогреватель GPU вставлен сюда */}
-      <GpuKeeper />
-
       <Keyboard3DWrapper>
         <div className="flex gap-4 p-4" style={{ transformStyle: 'preserve-3d' }}>
             {/* MAIN */}
@@ -239,7 +221,7 @@ const TesterMode = () => {
         </div>
       </Keyboard3DWrapper>
 
-      {/* Stats UI */}
+      {/* STATS */}
       <motion.div initial={{ y: 30, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="mt-12 glass-panel px-10 py-5 rounded-full flex gap-10 items-center border border-white/10 z-20">
         <div className="text-center group">
             <div className="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1 group-hover:text-indigo-400 transition-colors">Pressed</div>
@@ -256,7 +238,7 @@ const TesterMode = () => {
                             initial={{ opacity: 0, scale: 0.5, y: 10, filter: "blur(5px)" }}
                             animate={{ opacity: 1, scale: 1, y: 0, filter: "blur(0px)" }}
                             exit={{ opacity: 0, scale: 0.9, y: -10 }}
-                            transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 20 }}
                             className="block whitespace-nowrap drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]"
                         >
                             {LABELS[lastKey] || lastKey.replace('Key', '')}
@@ -272,6 +254,7 @@ const TesterMode = () => {
   );
 };
 
+// ... ТУТ ДАЛЕЕ TYPING MODE БЕЗ ИЗМЕНЕНИЙ, ОСТАВЛЯЙ СТАРЫЙ КОД НИЖЕ ...
 const TypingMode = () => {
   const [text, setText] = useState("");
   const [input, setInput] = useState("");
